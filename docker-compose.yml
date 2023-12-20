@@ -25,6 +25,8 @@ services:
       - "3316:3306"
     env_file:
       - _docker/env/mysql.env
+    volumes:
+      - db_data:/var/lib/mysql
 
   composer:
     build:
@@ -49,7 +51,8 @@ services:
       - ./frontend:/var/www/app
     command: npm run dev -- --host
 
-
+volumes:
+  db_data:
 
 
 

@@ -52,6 +52,7 @@ services:
     volumes:
       - ./frontend:/var/www/app
     entrypoint: ["npm"]
+    command: npm run dev -- --host
 
 volumes:
   db_data:

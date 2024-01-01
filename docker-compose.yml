@@ -47,9 +47,11 @@ services:
     build:
       context: _docker/dockerfiles
       dockerfile: node.Dockerfile
+    ports:
+      - "4000:5137"
     volumes:
       - ./frontend:/var/www/app
-    command: npm run dev -- --host
+    entrypoint: ["npm"]
 
 volumes:
   db_data:

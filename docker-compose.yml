@@ -51,7 +51,6 @@ services:
       - "4000:5137"
     volumes:
       - ./frontend:/var/www/app
-    entrypoint: ["npm"]
     command: npm run dev -- --host
 
 volumes:

@@ -1,8 +1,7 @@
 FROM composer:latest
 
-RUN mkdir -p /var/www/laravel
-WORKDIR /var/www/laravel
-RUN adduser -D user && chown -R user /var/www/laravel
+RUN adduser -D user
 USER user
+WORKDIR /var/www/laravel
 
 ENTRYPOINT ["composer", "--ignore-platform-reqs"]

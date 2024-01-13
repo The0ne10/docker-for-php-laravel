@@ -9,7 +9,7 @@ RUN docker-php-ext-install pdo pdo_mysql \
     && docker-php-ext-enable xdebug
 
 
-RUN adduser -D user && chown -R user /var/www/
+RUN adduser -D user && chown -R user /var/www/laravel
 USER user
 
-WORKDIR /var/www/
+WORKDIR /var/www/laravel

@@ -1,14 +1,20 @@
-FROM php:8.2-fpm-alpine
+FROM php:8.2-fpm
 
 RUN mkdir -p /var/www/laravel
-RUN docker-php-ext-install pdo pdo_mysql \
-    && apk add --update linux-headers \
-    && apk add nodejs && apk add npm \
-    && apk add --no-cache $PHPIZE_DEPS \
-    && pecl install xdebug-3.3.1 \
-    && docker-php-ext-enable xdebug
+RUN apt-get update && apt-get install -y \
+      apt-utils \
+      libpq-dev \
+      libpng-dev \
+      libzip-dev \
+      zip unzip \
+      git && \
+      docker-php-ext-install pdo_mysql && \
+      docker-php-ext-install bcmath && \
+      docker-php-ext-install gd && \
+      docker-php-ext-install zip && \
+      apt-get clean
 
-RUN adduser -D user && chown -R user /var/www/laravel
+RUN useradd user && chown -R user /var/www/laravel
 USER user
 
 WORKDIR /var/www/laravel
